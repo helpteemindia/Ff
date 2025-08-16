@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Rewards Redemption - Mock</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --yellow:#f7c83a;
+      --text-dark:#0f0f0f;
+      --muted:#6b6b6b;
+      --accent:#f5410b;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body,html{
+      height:100%;
+      font-family: "Montserrat", system-ui, Arial, sans-serif;
+      background:#111;
+      color:var(--text-dark);
+    }
+    .wrap{
+      display:flex;
+      min-height:100vh;
+      width:100%;
+    }
+    @keyframes slideInLeft {
+      from { transform: translateX(-100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes slideInRight {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    .left{
+      flex: 1.3;
+      min-width: 300px;
+      background:#222 url('fff.jpg') center/cover no-repeat;
+      animation: slideInLeft 1s ease-out forwards;
+    }
+    .right{
+      flex: 1;
+      background: var(--yellow);
+      padding:48px 40px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap:22px;
+      animation: slideInRight 1s ease-out forwards;
+    }
+    .store-btn{
+      position:absolute;
+      right:28px;
+      top:28px;
+      background:#fff;
+      border-radius:10px;
+      padding:10px 16px;
+      font-weight:700;
+      box-shadow:0 6px 18px rgba(0,0,0,0.15);
+      cursor:pointer;
+      border: none;
+      transition: background 0.2s ease;
+    }
+    .store-btn:hover{
+      background:#f1f1f1;
+    }
+    h1{
+      margin:8px 0;
+      font-size:20px;
+      letter-spacing:0.4px;
+      font-weight:700;
+      text-align:center;
+    }
+    .reward-images{
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      margin-bottom:10px;
+    }
+    .reward-images img{
+      width:70px;
+      height:70px;
+      object-fit:cover;
+      border-radius:8px;
+      background:#fff;
+      border:1px solid #ddd;
+      box-shadow:0 4px 8px rgba(0,0,0,0.12);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .reward-images img:hover{
+      transform: scale(1.05);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.18);
+    }
+    .button-row{
+      display:flex;
+      gap:14px;
+      margin-top:12px;
+    }
+    .btn{
+      flex:1;
+      background: var(--accent);
+      color: #fff;
+      padding:14px 18px;
+      font-size:15px;
+      font-weight:700;
+      border:none;
+      border-radius:8px;
+      cursor:pointer;
+      box-shadow:0 4px 12px rgba(0,0,0,0.15);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .btn:hover:enabled{
+      transform: translateY(-2px);
+      box-shadow:0 6px 16px rgba(0,0,0,0.2);
+    }
+    .btn:disabled {
+      background: #555;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+    .notice{
+      margin-top:20px;
+      background:transparent;
+      color:#111;
+      font-size:14.6px;
+      line-height:1.45;
+    }
+    .notice strong{ display:block; margin-bottom:8px; font-weight:800; font-size:15px; }
+    .notice ol{
+      padding-left:18px;
+      margin:0;
+      list-style:decimal;
+      color:#0b0b0b;
+    }
+    .notice ol li{ margin:6px 0; }
+    .notice .highlight{ color:var(--accent); font-weight:800; }
+    .footerbar{
+      background:#0a0a0a;
+      color:#ddd;
+      padding:12px 18px;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      position:fixed;
+      bottom:0;
+      left:0;
+      right:0;
+      font-size:13px;
+    }
+    .footerbar img{
+      width:40px;
+      height:40px;
+    }
+    input.uid-input {
+      width: 100%;
+      padding: 10px 12px;
+      font-size: 14px;
+      border-radius: 8px;
+      border: none;
+      margin-top: 6px;
+      outline: none;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      text-align:center;
+    }
+    @media (max-width:900px){
+      .wrap{ flex-direction:column; }
+      .left{ height:46vh; min-height:280px; }
+      .right{ padding:28px; }
+      .store-btn{ right:16px; top:16px; padding:8px 12px; }
+      h1{ font-size:18px; }
+      .notice{ font-size:14px; }
+      .footerbar{ font-size:12px; padding:10px 12px; }
+    }
+    @media (max-width:480px){
+      .left{ height:36vh; }
+      .right{ padding:18px; }
+      h1{ font-size:16px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="left"></div>
+  <div class="right">
+    <button class="store-btn" onclick="window.location.href='https://shop.garena.sg/?utm_source=FF+RedeemPage&utm_medium=Entrance'">🛒 STORE</button>
+    <div style="max-width:420px;margin:auto;">
+
+      <!-- Reward Images Row -->
+      <div class="reward-images">
+        <img src="image1.jpg" alt="Reward 1">
+        <img src="image2.jpg" alt="Reward 2">
+        <img src="image3.jpg" alt="Reward 3">
+        <img src="image4.jpg" alt="Reward 4">
+      </div>
+      
+      <!-- UID Title -->
+      <h1>Enter Your Free Fire UID</h1>
+      
+      <!-- UID Input -->
+      <input type="number" class="uid-input" id="uid" placeholder="Enter 10-digit UID" maxlength="10">
+      
+      <!-- Claim Button -->
+      <div class="button-row">
+        <button class="btn" id="claimBtn" disabled>Claim Free Reward</button>
+      </div>
+      
+      <!-- Notice -->
+      <div class="notice" aria-live="polite">
+        <strong>Important Notice:</strong>
+        <ol>
+          <li>Free Fire x Naruto Shippuden Chapter 2 event details...</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footerbar">
+  <div style="width:50px;height:50px;display:flex;align-items:center;justify-content:center;">
+    <img src="garena.jpg" alt="logo">
+  </div>
+  <div>
+    Copyright © Garena International. Trademarks belong to their respective owners. All rights Reserved.
+  </div>
+</div>
+
+<script>
+  const uidInput = document.getElementById('uid');
+  const claimBtn = document.getElementById('claimBtn');
+
+  uidInput.addEventListener('input', function() {
+    const uidValue = uidInput.value.trim();
+    if (/^\d{10}$/.test(uidValue)) {
+      claimBtn.disabled = false;
+    } else {
+      claimBtn.disabled = true;
+    }
+  });
+</script>
+
+</body>
+</html>
